@@ -7,7 +7,7 @@
 
 ## Including it in your project:
 
-### Step 1. Add the JitPack repository to your root `build.gradle` file
+### Step 1. Add the JitPack repository to your `settings.gradle` file
 ```gradle
     allprojects {
         repositories {
