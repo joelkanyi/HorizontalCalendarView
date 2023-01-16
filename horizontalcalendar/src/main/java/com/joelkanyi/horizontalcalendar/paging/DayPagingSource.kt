@@ -1,4 +1,4 @@
-package com.joelkanyi.horizontalcalendar
+package com.joelkanyi.horizontalcalendar.paging
 
 import android.annotation.SuppressLint
 import androidx.paging.PagingSource
@@ -14,7 +14,6 @@ class DayPagingSource(
 
     private val calendar = Calendar.getInstance()
 
-    // Create a SimpleDateFormat instance for formatting the fullDate field
     @SuppressLint("SimpleDateFormat")
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
@@ -25,6 +24,7 @@ class DayPagingSource(
 
         // Iterate over the months of the year
         for (month in 0..11) {
+
             // Set the calendar to the first day of the month
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.YEAR, page)
@@ -41,9 +41,9 @@ class DayPagingSource(
                     Locale.getDefault()
                 )
                 val displayDate =
-                    String.format("%02d", day) // format the day to always have two digits
+                    String.format("%02d", day) // Format the day to always have two digits
                 val fullDate =
-                    dateFormat.format(calendar.time) // use the SimpleDateFormat to format the fullDate field
+                    dateFormat.format(calendar.time) // Use the SimpleDateFormat to format the fullDate field
                 val displayMonth = calendar.getDisplayName(
                     Calendar.MONTH,
                     Calendar.SHORT,

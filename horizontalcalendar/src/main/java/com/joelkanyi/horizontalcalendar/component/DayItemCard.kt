@@ -18,15 +18,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.joelkanyi.horizontalcalendar.model.Day
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DayItemCard(
     modifier: Modifier,
-    day: String,
-    date: String,
-    fullDate: String,
-    onClick: (String) -> Unit = {},
+    day: Day,
+    onClick: (Day) -> Unit = {},
     isSelected: (String) -> Boolean,
     selectedCardColor: Color,
     unSelectedCardColor: Color,
@@ -39,11 +38,11 @@ fun DayItemCard(
             .wrapContentHeight()
             .padding(2.dp)
             .clickable {
-                onClick(fullDate)
+                onClick(day)
             },
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
-            containerColor = if (isSelected(fullDate)) {
+            containerColor = if (isSelected(day.fullDate)) {
                 selectedCardColor
             } else {
                 unSelectedCardColor
@@ -59,24 +58,24 @@ fun DayItemCard(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = day,
+                    text = day.dayShortName,
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    color = if (isSelected(fullDate)) {
+                    color = if (isSelected(day.fullDate)) {
                         selectedTextColor
                     } else {
                         unSelectedTextColor
                     }
                 )
                 Text(
-                    text = date,
+                    text = day.displayDate,
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleSmall,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    color = if (isSelected(fullDate)) {
+                    color = if (isSelected(day.fullDate)) {
                         selectedTextColor
                     } else {
                         unSelectedTextColor

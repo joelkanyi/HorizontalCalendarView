@@ -36,8 +36,8 @@ class MainActivity : ComponentActivity() {
                         unSelectedTextColor = Color.Black,
                         selectedCardColor = Color.Blue,
                         unSelectedCardColor = Color.LightGray,
-                        onDayClick = { date ->
-                            Toast.makeText(context, date, Toast.LENGTH_SHORT).show()
+                        onDayClick = { day ->
+                            Toast.makeText(context, day.toString(), Toast.LENGTH_SHORT).show()
                         }
                     )
                 }

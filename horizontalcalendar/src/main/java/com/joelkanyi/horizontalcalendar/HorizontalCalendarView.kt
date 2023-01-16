@@ -3,21 +3,25 @@ package com.joelkanyi.horizontalcalendar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.compose.collectAsLazyPagingItems
+import com.joelkanyi.horizontalcalendar.component.HorizontalCalendarComponent
+import com.joelkanyi.horizontalcalendar.model.Day
+import com.joelkanyi.horizontalcalendar.paging.DayPagingSource
+import com.joelkanyi.horizontalcalendar.viewmodel.HorizontalCalendarViewModel
 
 @Composable
 fun HorizontalCalendarView(
     modifier: Modifier = Modifier,
-    onDayClick: (String) -> Unit,
+    onDayClick: (Day) -> Unit,
     selectedCardColor: Color,
     unSelectedCardColor: Color,
     selectedTextColor: Color,
     unSelectedTextColor: Color,
 ) {
 
-    val viewModel = HorizontalCalendarViewModel()
+    val viewModel: HorizontalCalendarViewModel = viewModel()
 
     val days = Pager(
         config = PagingConfig(enablePlaceholders = false, pageSize = 10),
@@ -28,13 +32,13 @@ fun HorizontalCalendarView(
 
     HorizontalCalendarComponent(
         modifier = modifier,
-        days = days.collectAsLazyPagingItems(),
+        days = days,
         isDaySelected = { fullDate ->
             viewModel.selectedDate.value == fullDate
         },
-        onClickDay = { fullDate ->
-            viewModel.setSelectedDateState(fullDate)
-            onDayClick(fullDate)
+        onClickDay = { day ->
+            viewModel.setSelectedDateState(day.fullDate)
+            onDayClick(day)
         },
         selectedCardColor = selectedCardColor,
         unSelectedCardColor = unSelectedCardColor,
