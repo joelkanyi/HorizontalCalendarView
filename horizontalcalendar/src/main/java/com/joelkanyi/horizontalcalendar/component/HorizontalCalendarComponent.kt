@@ -59,6 +59,7 @@ fun HorizontalCalendarComponent(
                     if (daysLazyRowState.firstVisibleItemIndex == index) {
                         monthAndYear.value = "${day?.monthShortName}, ${day?.year}"
                     }
+
                     day?.let {
                         DayItemCard(
                             modifier = modifier,
