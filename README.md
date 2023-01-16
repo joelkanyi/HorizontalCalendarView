@@ -1,11 +1,13 @@
-# HorizontalCalendarView
-A Jetpack Compose Horizontal Calendar View Library
+<h1 align="center">HorizontalCalendarView</h1></br>
 
-To use the library in your project:
+<p align="center">
+:calendar: A Jetpack Compose Horizontal Calendar View Library for your Android projects.
+</p>
+</br>
 
-### Step 1. Add the JitPack repository to your build file
+## Including it in your project:
 
-#### Add it in your root build.gradle at the end of repositories:
+#### Step 1. Add the JitPack repository to your root `build.gradle` file
 ```gradle
     allprojects {
         repositories {
@@ -14,14 +16,15 @@ To use the library in your project:
         }
     }
 ```
-## Step 2. Add the dependency
+
+#### Step 2. Add the dependency
 ```gradle
     dependencies {
         implementation 'com.github.JoelKanyi:HorizontalCalendarView:1.0.0'
     }
 ```
 
-## Usage
+#### Usage
 Add the `HorizontalCalendarView` composable into your project and customize it according to your needs:
 ```kotlin
 HorizontalCalendarView(
@@ -36,5 +39,5 @@ HorizontalCalendarView(
 )
 ```
 
-## Demo
+#### Demo
 <img src="screenshots/demo.jpg" width="250"/>
