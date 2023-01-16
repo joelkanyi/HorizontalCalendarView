@@ -38,6 +38,17 @@ class MainActivity : ComponentActivity() {
                             Toast.makeText(context, day.toString(), Toast.LENGTH_SHORT).show()
                         }
                     )
+
+                    HorizontalCalendarView(
+                        modifier = Modifier,
+                        selectedTextColor = Color.White,
+                        unSelectedTextColor = Color.Black,
+                        selectedCardColor = Color.Blue,
+                        unSelectedCardColor = Color.LightGray,
+                        onDayClick = { day ->
+                            Toast.makeText(context, day.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    )
                 }
             }
         }
