@@ -35,3 +35,6 @@ HorizontalCalendarView(
     }
 )
 ```
+
+## Demo
+<img src="screenshots/demo.jpg" width="250"/>
