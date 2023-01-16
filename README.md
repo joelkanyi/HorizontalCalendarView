@@ -1,5 +1,5 @@
 # HorizontalCalendarView
-[WIP] A Jetpack Compose Horizontal Calendar View Library
+A Jetpack Compose Horizontal Calendar View Library
 
 To use the library in your project:
 
