@@ -37,7 +37,6 @@ fun HorizontalCalendarComponent(
     val allDays = days.collectAsLazyPagingItems()
 
     Column(
-        modifier = Modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp)
     ) {

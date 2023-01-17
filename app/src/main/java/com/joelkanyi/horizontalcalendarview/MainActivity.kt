@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import com.joelkanyi.horizontalcalendar.HorizontalCalendarView
 import com.joelkanyi.horizontalcalendarview.ui.theme.HorizontalCalendarViewTheme
 
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     HorizontalCalendarView(
-                        modifier = Modifier,
+                        modifier = Modifier.padding(16.dp),
                         selectedTextColor = Color.White,
                         unSelectedTextColor = Color.Black,
                         selectedCardColor = Color.Blue,
