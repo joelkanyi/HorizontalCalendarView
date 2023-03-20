@@ -37,8 +37,10 @@ fun HorizontalCalendarView(
             viewModel.selectedDate.value == fullDate
         },
         onClickDay = { day ->
-            viewModel.setSelectedDateState(day.fullDate)
-            onDayClick(day)
+            if (day.fullDate != viewModel.selectedDate.value) {
+                viewModel.setSelectedDateState(day.fullDate)
+                onDayClick(day)
+            }
         },
         selectedCardColor = selectedCardColor,
         unSelectedCardColor = unSelectedCardColor,
