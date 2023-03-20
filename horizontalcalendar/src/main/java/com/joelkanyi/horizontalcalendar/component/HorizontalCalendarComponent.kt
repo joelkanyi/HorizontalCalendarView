@@ -58,7 +58,7 @@ fun HorizontalCalendarComponent(
             horizontalArrangement = Arrangement.spacedBy(2.dp),
             content = {
                 itemsIndexed(allDays) { index, day ->
-                    if (remember { derivedStateOf { daysLazyRowState.firstVisibleItemIndex }.value } == index) {
+                    if (remember { derivedStateOf { daysLazyRowState.firstVisibleItemIndex } }.value == index) {
                         monthAndYear.value = "${day?.monthShortName}, ${day?.year}"
                     }
 
