@@ -20,7 +20,7 @@
 ### Step 2. Add the dependency
 ```gradle
     dependencies {
-        implementation 'com.github.JoelKanyi:HorizontalCalendarView:1.0.3'
+        implementation 'com.github.JoelKanyi:HorizontalCalendarView:1.0.4'
     }
 ```
 
