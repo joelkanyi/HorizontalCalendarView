@@ -8,19 +8,20 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
 import com.joelkanyi.horizontalcalendar.model.Day
+import com.joelkanyi.horizontalcalendar.viewmodel.HorizontalCalendarViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 @Composable
 fun HorizontalCalendarComponent(
@@ -33,8 +34,11 @@ fun HorizontalCalendarComponent(
     selectedTextColor: Color,
     unSelectedTextColor: Color,
 ) {
+    val viewModel: HorizontalCalendarViewModel = viewModel()
     val daysLazyRowState = rememberLazyListState()
     val allDays = days.collectAsLazyPagingItems()
+    val coroutineScope = rememberCoroutineScope()
+    val selectedDate = viewModel.selectedDate
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -74,5 +78,16 @@ fun HorizontalCalendarComponent(
                 }
             }
         )
+
+        LaunchedEffect(allDays.itemSnapshotList.size) {
+            coroutineScope.launch {
+                val selectedDay = allDays.itemSnapshotList.items.find { day ->
+                    day.fullDate == selectedDate.value
+                }
+                allDays.itemSnapshotList.items.indexOf(selectedDay).let { index ->
+                    daysLazyRowState.scrollToItem(if (index < 0) 0 else index)
+                }
+            }
+        }
     }
 }
