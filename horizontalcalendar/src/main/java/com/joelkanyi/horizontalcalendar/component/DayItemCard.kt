@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,13 +15,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.joelkanyi.horizontalcalendar.model.Day
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DayItemCard(
     modifier: Modifier,
@@ -37,10 +38,11 @@ fun DayItemCard(
             .wrapContentWidth()
             .wrapContentHeight()
             .padding(2.dp)
+            .clip(RoundedCornerShape(12.0.dp))
             .clickable {
                 onClick(day)
             },
-        shape = MaterialTheme.shapes.medium,
+        shape = RoundedCornerShape(12.0.dp), // similar to medium shape token
         colors = CardDefaults.cardColors(
             containerColor = if (isSelected(day.fullDate)) {
                 selectedCardColor
@@ -58,7 +60,7 @@ fun DayItemCard(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = day.dayShortName,
+                    text = day.dayShortName.take(2).uppercase(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
