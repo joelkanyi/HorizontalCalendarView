@@ -1,5 +1,6 @@
 package com.joelkanyi.horizontalcalendar.component
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +23,7 @@ import com.joelkanyi.horizontalcalendar.viewmodel.HorizontalCalendarViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HorizontalCalendarComponent(
     modifier: Modifier,
@@ -57,14 +59,19 @@ fun HorizontalCalendarComponent(
             state = daysLazyRowState,
             horizontalArrangement = Arrangement.spacedBy(2.dp),
             content = {
-                itemsIndexed(allDays) { index, day ->
+                itemsIndexed(
+                    items = allDays,
+                    key = { _, day ->
+                        day.fullDate
+                    }
+                ) { index, day ->
                     if (remember { derivedStateOf { daysLazyRowState.firstVisibleItemIndex } }.value == index) {
                         monthAndYear.value = "${day?.monthShortName}, ${day?.year}"
                     }
 
                     day?.let {
                         DayItemCard(
-                            modifier = modifier,
+                            modifier = modifier.animateItemPlacement(),
                             day = it,
                             isSelected = isDaySelected,
                             onClick = onClickDay,
