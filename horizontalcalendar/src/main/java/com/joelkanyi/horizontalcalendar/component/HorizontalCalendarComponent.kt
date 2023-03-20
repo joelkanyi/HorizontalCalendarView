@@ -3,7 +3,6 @@ package com.joelkanyi.horizontalcalendar.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -59,7 +58,7 @@ fun HorizontalCalendarComponent(
             horizontalArrangement = Arrangement.spacedBy(2.dp),
             content = {
                 itemsIndexed(allDays) { index, day ->
-                    if (daysLazyRowState.firstVisibleItemIndex == index) {
+                    if (remember { derivedStateOf { daysLazyRowState.firstVisibleItemIndex }.value } == index) {
                         monthAndYear.value = "${day?.monthShortName}, ${day?.year}"
                     }
 
